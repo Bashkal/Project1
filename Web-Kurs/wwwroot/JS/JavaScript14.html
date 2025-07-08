@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript DOM Selectors(Seçiciler)</title>
+</head>
+<body>
+    <h1>JavaScript DOM Selectors(Seçiciler)</h1>
+    <h2>html ögelerini id ye göre bulma</h2>
+    <p id="merhabaparagraf">Merhaba</p>
+    <p id="jsIdSelectorTest">İçerik seçici test</p>
+    <script>
+        const icerik = document.getElementById("merhabaparagraf");
+        document.getElementById("jsIdSelectorTest").innerHTML = "değişmiş hali" + icerik.innerHTML;
+    </script>
+    <h2>H>tml ögelerinin etiket adına göre bulma</h2>
+    <div>div içeriği</div>
+    <div id="bosdiv"></div>
+    <script>
+        const divim = document.getElementsByTagName("div");
+        document.getElementById("bosdiv").innerHTML = "Seçili div içeriği:" + divim[0].innerHTML;
+    </script>
+    <h2 class=" sinifsecici">Html ögelerini Sınıf adına göre bulma</h2>
+    <p id="demo"></p>
+    <script>
+        const sinifsecici = document.getElementsByClassName("sinifsecici");
+        document.getElementById("demo").innerHTML = "başlığımız ile aynı atadığımız paragrafımız:" + sinifsecici[0].innerHTML;
+
+    </script>
+    <h3 class="sorgusecici">Sorgu Seciciye göre html ögesini bulma</h3>
+    <p id="sorgusecici"></p>
+    <script>
+        const sorgusecici = document.querySelectorAll("h3.sorgusecici");
+        document.getElementById("sorgusecici").innerHTML = "paragraf" + sorgusecici[0].innerHTML;
+    </script>
+</body>
+</html>

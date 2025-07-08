@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Switch Case kullanımı</title>
+    <script>
+        var a;
+
+        document.writeln("<h1>Switch Case Test HTML Dosyası</h1>");
+        document.writeln("<h3>Seçenek 1</h3>");
+        document.writeln("<h3>Seçenek 2</h3>");
+        document.writeln("<h3>Seçenek 3</h3>");
+        document.writeln("<h3>Seçenek 4</h3>");
+
+        a = window.prompt("Hangi seçeneği istediğinizi rakam ile belirtiniz")
+        switch (parseInt(a)) {
+
+            case 1:
+                document.writeln("<h4>1. Seçeneği seçtiniz</h4>");
+                break;
+
+            case 2:
+                document.writeln("<h4>2. Seçeneği seçtiniz</h4>");
+                break;
+
+            case 3:
+                document.writeln("<h4>3. Seçeneği seçtiniz</h4>");
+                break;
+
+            default:
+                document.writeln("<h4>Seçim yapmadınız yahut yanlış bir işlem uyguladınız</h4>");
+                break;
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

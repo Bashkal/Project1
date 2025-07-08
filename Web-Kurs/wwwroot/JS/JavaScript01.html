@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Giriş</title>
+    <!--<script>
+        document.write("<h1>Merhaba</h1>");
+        document.writeln('<h2 style="color:red">JS öğreniyorum</h2>');
+        window.alert('Hoşgeldiniz');
+        window.prompt('adınız nedir',isim)
+    </script>-->
+    <script language="javascript">
+        var fiyat, miktar, tutar, fiy, mik;
+        fiyat = window.prompt("fiyatı giriniz", "0");
+        miktar = window.prompt("miktar giriniz", "0");
+        fiy = parseInt(fiyat);
+        mik = parseInt(miktar);
+        tutar = fiy * mik;
+        document.writeln('<h1 style="color:orange">Fiyat: ' + fiyat + '</h1>');
+        document.writeln('<h1 style="color:orange">Miktar: ' + miktar + '</h1>');
+        document.writeln('<h1 style="color:orange">Tutar: ' + tutar + '</h1>');
+    </script>
+</head>
+<body>
+
+</body>
+</html>

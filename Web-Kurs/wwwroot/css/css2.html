@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Css margin-padding</title>
+    <style>
+        body {
+             
+        margin:0;}
+        p {margin: 10px 50px 60px 90px;border: 1px inset silver}
+    </style>
+</head>
+<body>
+    <h1 style="margin-top:50px;margin-bottom:12px;margin-left:20px;margin-right:100px; border:2px inset">Css margin kenar boşluğu</h1>
+    <h2 style="margin-top:50px; border:2px inset">Css de margin ile kenar boşluğu belirlenebilir</h2>
+    <p>
+        Margin özelliğini tek kodla ayarlayabiliriz
+        <code>
+            p{margin:10px 50px 60px 90px}
+        </code>
+    </p>
+    <div style="margin: 15px 30px 25px; border:1px outset red;">
+        <h2>Margin ve padding özelliğinin üç değeri varsa</h2>
+        <br />
+        <p>ilk değer üst</p>
+        <p>ikinci değer sağ sol boşluklar</p>
+        <p>üçüncü değer alt boşluğu ifade eder</p>
+    </div>
+    <div style="margin: 15px 30px ; border:1px outset silver;">
+        <h2>Margin ve padding özelliğinin iki değeri varsa</h2>
+        <br />
+        <p>ilk değer üst</p>
+        <p>ikinci değer sağ sol boşluklar</p>
+
+    </div>
+    <div style="margin:  30px ; border:1px outset red;">
+        <h2>Margin ve padding özelliğinin tek değeri varsa</h2>
+        <br />
+        <p>bu değer dört yön için de geçerlidir</p>
+        
+    </div>
+    <div style="margin:auto;padding:20px; border:1px outset silver;width:100px">
+        <h3>Oto margin</h3>
+    </div>
+</body>
+</html>

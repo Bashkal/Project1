@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Web_Kurs</RootNamespace>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\css1.html" />
+    <None Include="wwwroot\css\css2.html" />
+    <None Include="wwwroot\css\css3.html" />
+    <None Include="wwwroot\css\css4.html" />
+    <None Include="wwwroot\css\css5.html" />
+    <None Include="wwwroot\css\css6.html" />
+    <None Include="wwwroot\css\css7.html" />
+    <None Include="wwwroot\htmlgiris.html" />
+    <None Include="wwwroot\logo-dener-dark %281%29.ico" />
+    <None Include="wwwroot\logo-dener-dark.png" />
+    <None Include="wwwroot\StyleSheet.css" />
+    <None Include="wwwroot\JS\JavaScript01.html" />
+    <None Include="wwwroot\JS\JavaScript02.html" />
+    <None Include="wwwroot\JS\JavaScript03.html" />
+    <None Include="wwwroot\JS\JavaScript04.html" />
+    <None Include="wwwroot\JS\JavaScript05.html" />
+  </ItemGroup>
+
+</Project>

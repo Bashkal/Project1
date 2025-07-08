@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Olaylarını Kullanımı</title>
+    <script>
+        //onblur
+        //onchange
+        //onclick
+        //onfocus
+        //onmousemove
+        //onmouseover
+        //onselect
+        //onsubmit
+        //onunload
+    </script>
+</head>
+<body>
+    <h1>Olayların Kullanımı</h1>
+
+    <hr />
+
+    <h2>Örnek-1 OnClick</h2>
+    <a href="index.html" onclick="alert('OnClick Olayı Gerçekleşti');">Tıklayınız</a>
+
+    <script>
+        function goster() {
+            var m = "";
+            if (document.cinsiyet.cins[0].checked) {
+                m = 'Kadın';
+            }
+            if (document.cinsiyet.cins[1].checked) {
+                m = 'Erkek';
+            }
+            alert("Seçilen Cinsiyet " + m)
+        }
+        function kontrol() {
+            str = "Google Git";
+            if (confirm(str)) {
+                location.href = "https://www.google.com.tr/";
+
+            }
+        }
+    </script>
+
+    <hr />
+
+    <h2>Örnek-2 OnClick</h2>
+    <h3>Cinsiyet Seçiniz</h3>
+
+    <form name="cinsiyet">
+        <input id="Radio1" type="radio" name="cins" />Kadın
+        <input id="Radio2" type="radio" name="cins" />Erkek
+        <input id="Button1" type="button" value="Seç" onclick="goster()" />
+    </form>
+
+    <hr />
+    <h2>Örnek-3 Onclick</h2>
+    <input id="btnGoogle" type="button" name="name" value="Google" onclick="kontrol()" />
+
+    <hr />
+
+    <h2>Örnek-4 OnMouseOver</h2>
+    <a href="" onmouseover="alert('a tagının üzerine mouse geldi')">On Mouse Hover</a>
+
+    <hr />
+
+    <h2>Örnek-5 Focus Uygulaması</h2>
+    <input id="Text1" type="text" size=" 20" value="Merhaba" onfocus="this.value='Focus yapıldı'" onmouseout="this.value='focus gitti'" />
+
+    <hr />
+
+    <h2>Örnek-6</h2>
+    <h3>Blur Uygulaması</h3>
+    <input id="Text1" type="text" size=" 20" value="Merhaba" onfocus="this.value='Focus yapıldı'" onblur="this.value='focus gitti'" />
+
+    <hr />
+
+    <h3>Örnek-7 onChange</h3>
+    <form>
+        <select name="list" size="1" onchange="location=sec(this)">
+            <option value="#">Seçiniz</option>
+            <option value="https://www.google.com/">Google</option>
+            <option value="https://yandex.com.tr/">Yandex</option>
+            <option value="https://www.yahoo.com/">Yahoo</option>
+        </select>
+    </form>
+    <script>
+        function sec(s) {
+            return s.options[s.selectedIndex].value
+        }
+    </script>
+
+    <hr />
+
+    <h3>Örnek-8 Onsubmit</h3>
+    <form name="formsubmit" onsubmit="datacheck()">
+        <d>5 adet karekter giriniz</d>
+        <input id="Textsubmit" type="text" name="chartext" size="5" />
+        <input id="Submit1" type="submit" value="Karakterler Girildi" />
+    </form>
+    <script>
+        var veri = false;
+        function datacheck() {
+            if (document.formsubmit.chartext.value.length == 5) {
+                return true;
+            }
+            else { alert("lütfen 5 karakter giriniz") }
+            return false;
+
+        }
+    </script>
+
+
+</body>
+</html>

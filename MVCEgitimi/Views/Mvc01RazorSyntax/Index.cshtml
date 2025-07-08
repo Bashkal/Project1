@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Index";
+    <h3>Değişken Tanımlama</h3>
+    string name = "mahmut";
+    string[] departments = new string[] { "BT", "Finas", "Satın Alma" };
+    foreach (var item in departments)
+    {
+        @(item);
+        <br>
+    }
+}
+<h2>MVC Razor Syntax</h2>
+<p>@name</p>
+
+

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Diziler</title>
+    <script>
+        /*
+        dizi kullanmadan
+
+        var sayi, i, t;
+        t = 0;
+        for (var i = 1; i <= 5; i++) {
+            sayi = parseInt(window.prompt("Lütfen bir tam sayı giriniz", "0"));
+            t += sayi;
+        }
+        document.write("<h3>Toplam: "+t+"</h3>")
+
+        dizi kullanarak
+        var sayi, t, i;
+        t = 0;
+        sayi = new Array(6);
+        for (var i =0; i <= 5; i++)
+        {
+            sayi[i] = parseInt(window.prompt("Lütfen bir tam sayı giriniz", "0"));
+            t =t+ sayi[i];
+        }
+        document.write("<h3>Toplam: " + t + "</h3>")
+        for (var i = 0; i <= 5;i++)
+        {
+            document.write("<h3>Sayilar: " + sayi[i1]+ "</h3>");
+        }
+
+        dizi uzunluğu
+        var uzunluk=sayi.length;
+        */
+        //diziye en başta değer atama
+        var array =new Array(5, 11, 23, 34, 54, 64, 65);
+        var array1 = [21, 23, 43, 43, 34, 54, 33];
+        var t = 0;
+        for (var dizielemani in array1) {
+            t += array1[dizielemani];
+        }
+        document.writeln("<h3>Toplam: " + t + "</h3>")
+
+    </script>
+</head>
+<body>
+    
+
+</body>
+</html>
