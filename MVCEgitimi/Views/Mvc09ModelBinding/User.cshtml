@@ -1,0 +1,56 @@
+﻿@model MVCEgitimi.Models.User
+
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>Kullanıcı bilgileri</h2>
+@Model.Name
+@Model.Surname
+
+@using (Html.BeginForm())
+{
+    <div>
+        Ad
+        <br />
+        @Html.EditorFor(model => Model.Name)
+        <br />
+        Soyad
+        <br />
+        @Html.EditorFor(model => Model.Surname)
+        <br />
+        Email
+        <br />
+        @Html.EditorFor(model => Model.Email)
+        <br />
+        Parola
+        <br />
+        @Html.EditorFor(model => Model.Password)
+        <br />
+        Kullanıcı Adı
+        <br />
+        @Html.EditorFor(model => Model.UserName)
+        <br />
+        Yaş
+        <br />
+        @Html.EditorFor(model => Model.Age)
+        <br />
+        <input id="Submit1" type="submit" value="Gönder" />
+    </div>
+}
+@if (IsPost)
+{
+    @ViewBag.Message
+    <br>
+    @ViewBag.Message1
+    <br>
+    @ViewBag.Message2
+    <br>
+    @ViewBag.Message3
+    <br>
+    @ViewBag.Message4
+    <br>
+    @ViewBag.Message5
+
+}
+

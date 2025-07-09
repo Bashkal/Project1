@@ -28,32 +28,32 @@
                 {
                     @class = "nav-link"
                 })
-                </li>
-                <li>
-                    @Html.ActionLink("İletişim", "Contact", "Home", new
-            {
-                area = ""
-            }, new
-            {
-                @class = "nav-link"
-            })
-            </li>
-            <li>@RenderSection("SayfaAdi", required: false)</li>
+                    </li>
+                    <li>
+                        @Html.ActionLink("İletişim", "Contact", "Home", new
+                {
+                    area = ""
+                }, new
+                {
+                    @class = "nav-link"
+                })
+                    </li>
+                    <li>@RenderSection("SayfaAdi", required: false)</li>
 
-        </ul>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Dener Makina</p>
+        </footer>
     </div>
-</div>
-</nav>
-<div class="container body-content">
-    @RenderBody()
-    <hr />
-    <footer>
-        <p>&copy; @DateTime.Now.Year - Dener Makina</p>
-    </footer>
-</div>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>

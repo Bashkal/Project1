@@ -11,6 +11,9 @@ namespace MVCEgitimi.Controllers
         // GET: Mvc07ControllerToView
         public ActionResult Index()
         {
+            ViewBag.CategoryName = "Electronics";
+            ViewData["ProductName"]= "Smartphone";
+            TempData["Message"] = "Welcome to the Electronics section!";
             return View();
         }
     }

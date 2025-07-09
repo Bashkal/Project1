@@ -128,9 +128,12 @@
     <Compile Include="Controllers\Mvc05StringFormatController.cs" />
     <Compile Include="Controllers\Mvc06SectionPartialController.cs" />
     <Compile Include="Controllers\Mvc07ControllerToViewController.cs" />
+    <Compile Include="Controllers\Mvc08ViewToControllerController.cs" />
+    <Compile Include="Controllers\Mvc09ModelBindingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -174,6 +177,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Project video chapter part.txt" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -196,10 +200,12 @@
     <Content Include="Views\Mvc06SectionPartial\Index.cshtml" />
     <Content Include="Views\Shared\_PartialPageMenu.cshtml" />
     <Content Include="Views\Mvc07ControllerToView\Index.cshtml" />
+    <Content Include="Views\Mvc08ViewToController\Index.cshtml" />
+    <Content Include="Views\Mvc09ModelBinding\Index.cshtml" />
+    <Content Include="Views\Mvc09ModelBinding\User.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
