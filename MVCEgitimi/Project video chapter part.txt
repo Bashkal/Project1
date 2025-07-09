@@ -134,3 +134,4 @@ Yes, you can implement chapter support in your ASP.NET MVC web app. Here's what 
 * ASP.NET MVC backend to serve and manage all data
 
 Would you like a **sample project structure** or some **starter code** for this?
+https://prnt.sc/FJYHruc3aJlQ
