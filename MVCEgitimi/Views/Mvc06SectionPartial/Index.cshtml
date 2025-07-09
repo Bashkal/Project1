@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Section Partial";
+}
+
+<h2>Section Partial Kullanımı</h2>
+<h3>Section Kullanımı</h3>
+@section scripts{
+    <script>
+        alert("Section Kullanımı ile js Kodu çalıştırabilirsiniz");
+    </script>
+}
+@section SayfaAdi{
+    <a class="nav-link" href="">Section kullanımı</a>
+    @Html.Partial("_PartialPageMenu")
+}
+<h2>Partial Kullanımı</h2>
+@Html.Partial("_PartialPageMenu")

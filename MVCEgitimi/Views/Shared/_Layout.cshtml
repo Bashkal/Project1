@@ -19,35 +19,41 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    
-                    <li>@Html.ActionLink("Hakkımızda", "About", "Home", new
-                    {
-                        area = ""
-                    }, new
-                    {
-                        @class = "nav-link"
-                    })</li>
-                    <li>@Html.ActionLink("İletişim", "Contact", "Home", new
-                    {
-                        area = ""
-                    }, new
-                    {
-                        @class = "nav-link"
-                    })</li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Dener Makina</p>
-        </footer>
-    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+                    <li>
+                        @Html.ActionLink("Hakkımızda", "About", "Home", new
+                {
+                    area = ""
+                }, new
+                {
+                    @class = "nav-link"
+                })
+                </li>
+                <li>
+                    @Html.ActionLink("İletişim", "Contact", "Home", new
+            {
+                area = ""
+            }, new
+            {
+                @class = "nav-link"
+            })
+            </li>
+            <li>@RenderSection("SayfaAdi", required: false)</li>
+
+        </ul>
+    </div>
+</div>
+</nav>
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Dener Makina</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
 </html>
