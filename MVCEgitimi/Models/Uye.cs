@@ -15,11 +15,13 @@ namespace MVCEgitimi.Models
         [Required]
         public string Soyad { get; set;
         }
-        [Required]
+        [Required, DataType(DataType.EmailAddress)]
+        [EmailAddress()]
+        [DisplayName("E-Posta Adresi")]
         public string Eposta { get; set;
         }
-        [Required,DataType(DataType.EmailAddress)]
-        [EmailAddress()]
+        [DisplayName("Kullanıcı Adı")]
+       
         public string KullaniciAdi { get; set;
         }
         [Required, DisplayName("TC Kimlik Numarası")]

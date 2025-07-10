@@ -209,6 +209,7 @@
     <Content Include="Views\Mvc09ModelBinding\User.cshtml" />
     <Content Include="Views\Mvc09ModelBinding\Address.cshtml" />
     <Content Include="Views\Mvc10ModelValidation\Index.cshtml" />
+    <Content Include="Views\Mvc10ModelValidation\YeniUye.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
