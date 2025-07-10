@@ -12,7 +12,13 @@ namespace MVCEgitimi.Controllers
         // GET: Mvc09ModelBinding
         public ActionResult Index()
         {
-            return View();
+            var sayfa = new UseModelsTogetherInSamePage()
+            {
+                UserObject = new User() { Name = "Mahmut Sami", Surname = "Başkal", Age = 20, Department = "BT", Email = "mahmutsamibaskal@gmail.com", Password = "Bashkal3360", UserName = "Bashkal", BirthDate=new DateTime(2005,02,11), IsActive = true },
+                AddressObject = new Address() { City = "İstanbul", Region = "Kadıköy", FullAdress = "Caferağa Mah. Kadıköy/İstanbul" }
+
+
+            };            return View(sayfa);
         }
         public ActionResult User()
         {
@@ -30,6 +36,19 @@ namespace MVCEgitimi.Controllers
             ViewBag.Message5 = "E-posta: " + user.Email;
              
             return View(user);
+        }
+        public ActionResult Address()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Address(Address address)
+        {
+            ViewBag.Message = "Şehir: " + address.City;
+            ViewBag.Message1 = "İlçe: " + address.Region;
+            ViewBag.Message2 = "Açık Adres: " + address.FullAdress;
+
+            return View();
         }
     }
 }

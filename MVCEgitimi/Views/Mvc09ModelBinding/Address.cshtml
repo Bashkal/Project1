@@ -1,0 +1,40 @@
+﻿@model MVCEgitimi.Models.Address
+
+@{
+    ViewBag.Title = "Address";
+}
+
+<h2>Address</h2>
+@using (Html.BeginForm())
+{
+    <div>
+        <hr />
+        Şehir
+        <br />
+        @Html.EditorFor(model => model.City)
+        <br />
+        İlçe
+        <br />
+        @Html.EditorFor(model => model.Region)
+        <br />
+        Açık Adres
+        <br />
+        @Html.EditorFor(model => model.FullAdress)
+        <br />
+        <input id="Submit1" type="submit" value="Gönder" />
+
+
+    </div>
+
+
+}
+@if (IsPost)
+{
+    @ViewBag.Message
+    <br>
+    @ViewBag.Message1
+    <br>
+    @ViewBag.Message2
+
+
+}

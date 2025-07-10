@@ -1,7 +1,17 @@
-﻿
+﻿@model MVCEgitimi.Models.UseModelsTogetherInSamePage
 @{
     ViewBag.Title = "Model Binding";
 }
 
-<h2>Index</h2>
-
+<h2>View Model</h2>
+<h3>Kullanıcı Bilgileri</h3>
+<h4>@Model.UserObject.Name</h4>
+<h4>@Model.UserObject.Surname</h4>
+<h4>@Model.UserObject.BirthDate</h4>
+<h4>@Model.UserObject.Email</h4>   
+<h4>@Model.UserObject.Age</h4>
+<hr />
+<h3>Adres Bilgileri</h3>
+<h4>@Model.AddressObject.City</h4>
+<h4>@Model.AddressObject.Region</h4>
+<h4>@Model.AddressObject.FullAdress</h4>
