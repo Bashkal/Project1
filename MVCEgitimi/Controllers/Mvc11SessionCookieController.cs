@@ -24,10 +24,16 @@ namespace MVCEgitimi.Controllers
         }
         public ActionResult Sessions()
         {
-            if (true)
+            if (Session["SessionText"] != null)
             {
+                ViewBag.SessionValue = Session["SessionText"].ToString();
             }
-            return View();
+            else
+            {
+                ViewBag.SessionValue = "Session Value is null"
+            }
+
+                return View();
         }
     }
 }
