@@ -131,6 +131,7 @@
     <Compile Include="Controllers\Mvc08ViewToControllerController.cs" />
     <Compile Include="Controllers\Mvc09ModelBindingController.cs" />
     <Compile Include="Controllers\Mvc10ModelValidationController.cs" />
+    <Compile Include="Controllers\Mvc11SessionCookieController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -213,6 +214,7 @@
     <Content Include="Views\Mvc10ModelValidation\UyeDuzenle.cshtml" />
     <Content Include="Views\Mvc10ModelValidation\UyeListele.cshtml" />
     <Content Include="Views\Mvc10ModelValidation\UyeSil.cshtml" />
+    <Content Include="Views\Mvc11SessionCookie\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

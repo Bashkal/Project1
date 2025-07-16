@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "Session ve Cookie Kukllanımı";
+}
+
+<h2>Session ve Cookie Kukllanımı</h2>
+
+@using (Html.BeginForm())
+{
+    <h4>Creating Session</h4> 
+    @Html.TextBox("text","Session")
+<input id="Submit1" type="submit" value="Session oluştur" />
+}
