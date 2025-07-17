@@ -30,10 +30,46 @@ namespace MVCEgitimi.Controllers
             }
             else
             {
-                ViewBag.SessionValue = "Session Value is null"
+                ViewBag.SessionValue = "Session Value is null";
             }
-
                 return View();
+        }
+        [HttpPost]
+        public ActionResult Sessions(string text)
+        {
+            if (Session["SessionText"] != null)
+            {
+                Session.Remove("SessionText");
+                //other method
+                //Session["SessionText"] = null;
+                ViewBag.SessionValue = "Session Value removed";
+            }
+            else
+            {
+                ViewBag.SessionValue = "Session Value is null";
+            }
+                return View();
+        }
+        [HttpPost]
+        public ActionResult Cookie(string cookie)
+        {   
+            HttpCookie cookiee = new HttpCookie("User",cookie);
+            HttpContext.Response.Cookies.Add(cookiee);
+            ViewBag.Kullanici=HttpContext.Request.Cookies["User"].Value;
+            return View("Index");
+        }
+        [HttpPost]
+        public ActionResult CookieDelete()
+        {
+            if (HttpContext.Request.Cookies["User"] != null)
+            {
+               HttpContext.Response.Cookies.Remove("User");
+            }
+            else
+            {
+                ViewBag.CookieValue = "Cookie Value is not exist";
+            }
+            return RedirectToAction("Index");
         }
     }
 }

@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "File upload";
+}
+
+<h2>File upload</h2>
+
+<form enctype="multipart/form-data" method="post">
+    <input id="File1" type="file" name="dosya" />
+    <hr />
+    <input id="Submit1" type="submit" value="Yükle" />
+</form>
+@ViewData["Message"]
+<img src="~/wwwroot/@ViewBag.path" alt="" />
