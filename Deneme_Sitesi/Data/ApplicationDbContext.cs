@@ -11,5 +11,6 @@ namespace Deneme_Sitesi.Data
         {
         }
         public DbSet<Guide> Guides { get; set; }
+        public DbSet<Deneme_Sitesi.Models.User> User { get; set; } = default!;
     }
 }
