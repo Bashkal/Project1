@@ -171,6 +171,7 @@
     <Content Include="Scripts\bootstrap.esm.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="wwwroot\notlar.txt" />
     <None Include="Scripts\jquery-3.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.1.js" />
     <Content Include="Scripts\jquery-3.7.1.min.js" />
@@ -218,6 +219,9 @@
     <Content Include="Views\Mvc11SessionCookie\Sessions.cshtml" />
     <Content Include="Views\Mvc12FileUpload\Index.cshtml" />
     <Content Include="Views\Mvc13ViewResult\Index.cshtml" />
+    <Content Include="Views\Shared\_KategorilerPartial.cshtml" />
+    <Content Include="Views\Shared\_KategorilerPartial2.cshtml" />
+    <Content Include="wwwroot\IFS Cloud Course Catalogue for Customers.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

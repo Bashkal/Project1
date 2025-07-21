@@ -7,4 +7,35 @@
 
 ActionResult
 <hr />
-@Html.ActionLink("RedirectResult","Index2")
+@Html.ActionLink("RedirectResult", "Index2")
+<hr />
+@Html.ActionLink("RedirectToRouteResult", "Index3")
+<hr />
+
+PartialViewResult
+<br />
+<h3>Kategorileri Partial ile Getirme</h3>
+@Html.Partial("_KategorilerPartial")
+<hr />
+<h3>Kategorileri Action ile Getirme</h3>
+
+@Html.Action("KategorileriPartialIleGetir")
+<hr />
+<h3>Kategorileri Model Kullanarak Action ile Getir</h3>
+@Html.Action("KategorileriModelIleGetir")
+<hr />
+File Result
+<br />
+@Html.ActionLink("FileResult", "PDFDosyaIndir")
+<hr />
+Metin Dosyası İndir
+<br />
+@Html.ActionLink("Kayıtlı Metin", "MetinDosyaIndir")
+<hr />
+Metin İndir
+<br />
+@Html.ActionLink("Controller string metin", "MetinDosyasiIndir")
+
+
+
+

@@ -39,6 +39,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "ASP.NET_WebForms", "ASP.NET
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCEgitimi", "MVCEgitimi\MVCEgitimi.csproj", "{1B734604-2D74-47D5-B8E9-12DE7E9181FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DenerProjectDraft", "DenerProjectDraft\DenerProjectDraft.csproj", "{41130DBC-277A-4C51-B277-CDE736428B63}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{1B734604-2D74-47D5-B8E9-12DE7E9181FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B734604-2D74-47D5-B8E9-12DE7E9181FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B734604-2D74-47D5-B8E9-12DE7E9181FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41130DBC-277A-4C51-B277-CDE736428B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41130DBC-277A-4C51-B277-CDE736428B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41130DBC-277A-4C51-B277-CDE736428B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41130DBC-277A-4C51-B277-CDE736428B63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
