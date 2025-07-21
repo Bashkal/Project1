@@ -60,6 +60,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -132,10 +134,14 @@
     <Compile Include="Controllers\Mvc11SessionCookieController.cs" />
     <Compile Include="Controllers\Mvc12FileUploadController.cs" />
     <Compile Include="Controllers\Mvc13ViewResultController.cs" />
+    <Compile Include="Controllers\Mvc14CRUDController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\Guides.cs" />
+    <Compile Include="Models\UrunDbContext.cs" />
     <Compile Include="Models\UseModelsTogetherInSamePage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\Uye.cs" />
@@ -222,6 +228,10 @@
     <Content Include="Views\Shared\_KategorilerPartial.cshtml" />
     <Content Include="Views\Shared\_KategorilerPartial2.cshtml" />
     <Content Include="wwwroot\IFS Cloud Course Catalogue for Customers.pdf" />
+    <Content Include="Views\Mvc14CRUD\Index.cshtml" />
+    <Content Include="Views\Mvc14CRUD\Details.cshtml" />
+    <Content Include="Views\Mvc14CRUD\Create.cshtml" />
+    <Content Include="Views\Mvc14CRUD\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

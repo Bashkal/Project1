@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVCEgitimi.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,11 +17,11 @@ namespace MVCEgitimi.Controllers
         }
         public RedirectResult Index2()
         {
-            return Redirect("/Home/Index") ;
+            return Redirect("/Home/Index");
         }
         public RedirectToRouteResult Index3()
         {
-            return RedirectToRoute("Default",new{ controller = "Home", action = "Index" });
+            return RedirectToRoute("Default", new { controller = "Home", action = "Index" });
         }
         public PartialViewResult KategorileriPartialIleGetir()
         {
@@ -34,7 +35,7 @@ namespace MVCEgitimi.Controllers
             "Kalvyeler",
             "Mouselar"};
 
-            return PartialView("_KategorilerPartial2",kategoriler);
+            return PartialView("_KategorilerPartial2", kategoriler);
         }
         public FileResult PDFDosyaIndir()
         {
@@ -52,16 +53,67 @@ namespace MVCEgitimi.Controllers
         }
         public FileStreamResult MetinDosyasiIndir()
         {
-            string metin="Merhaba, bu bir metin dosyasıdır.";
+            string metin = "Merhaba, bu bir metin dosyasıdır.";
             MemoryStream memoryStream = new MemoryStream();
-            byte[] bytes= System.Text.Encoding.UTF8.GetBytes(metin);
+            byte[] bytes = System.Text.Encoding.UTF8.GetBytes(metin);
             memoryStream.Write(bytes, 0, bytes.Length);
             memoryStream.Position = 0;
             FileStreamResult result = new FileStreamResult(memoryStream, "text/plain");
             result.FileDownloadName = "metin.txt";
             return result;
-            
+
 
         }
+        public JavaScriptResult JavaScriptResultOrnegi()
+        {
+            string script = "alert('Merhaba, bu bir JavaScript alert mesajıdır!');";
+            return new JavaScriptResult { Script = script };
+        }
+        public JavaScriptResult JSClick()
+        {
+            string script = "function button_click(){ alert('Merhaba, bu bir JavaScript alert mesajıdır!')}";
+            return new JavaScriptResult { Script = script };
+        }
+        public JsonResult Index4()
+        {
+            User user = new User
+            {
+                /*{
+  "Name": "Ahmet",
+  "Surname": "Yılmaz",
+  "Email": "msb@gmail.com",
+  "Password": null,
+  "BirthDate": "/Date(-62135596800000)/",
+  "IsActive": false,
+  "Age": 0,
+  "UserName": null,
+  "Department": null
+}*/
+                Name = "Ahmet",
+                Surname = "Yılmaz",
+                Email = "msb@gmail.com"
+            };
+
+            return Json(user,JsonRequestBehavior.AllowGet);
+        }
+        public ContentResult Index5()
+        {
+            var xml = @"
+<kullanicilar>
+                        <kullanici>
+                        <Id>1</Id>
+                        <Name>Mahmut</Name>
+                        <Age>20</Age>
+                        </kullanici>
+,<kullanici>
+                        <Id>2</Id>
+                        <Name>Sami</Name>
+                        <Age>2312</Age>
+                        </kullanici>
+</kullanicilar>";
+            return Content(xml, "application/xml");
+        }
+
+
     }
 }

@@ -26,7 +26,8 @@ PartialViewResult
 <hr />
 File Result
 <br />
-@Html.ActionLink("FileResult", "PDFDosyaIndir")
+@Html.ActionLink("FileResult", "PDFDosyaIndir", "", new
+{target="_blank"})
 <hr />
 Metin Dosyası İndir
 <br />
@@ -35,7 +36,19 @@ Metin Dosyası İndir
 Metin İndir
 <br />
 @Html.ActionLink("Controller string metin", "MetinDosyasiIndir")
+<hr />
+Javascript Result
+@*<script src="/Mvc13ViewResult/JavaScriptResultOrnegi"></script>*@
 
+@Html.ActionLink("JS result", "JavaScriptResultOrnegi")
+<br />
+@Html.ActionLink("JS result", "JSClick")
+<script src="/Mvc13ViewResult/JSClick"></script>
+<input id="Button1" onclick="button_click()" type="button" value="button" />
 
-
-
+<hr />
+JSON result
+@Html.ActionLink("Json Result","Index4")
+<br />
+Content result
+@Html.ActionLink("Content Result","Index5")
