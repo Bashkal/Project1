@@ -148,6 +148,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-egitimi\01-containers.html" />
+    <Content Include="bootstrap-egitimi\02-grid.html" />
+    <Content Include="bootstrap-egitimi\03-columns.html" />
+    <Content Include="bootstrap-egitimi\04-gutters.html" />
+    <Content Include="bootstrap-egitimi\05-images.html" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
@@ -232,6 +237,7 @@
     <Content Include="Views\Mvc14CRUD\Details.cshtml" />
     <Content Include="Views\Mvc14CRUD\Create.cshtml" />
     <Content Include="Views\Mvc14CRUD\Edit.cshtml" />
+    <Content Include="Views\Mvc14CRUD\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
