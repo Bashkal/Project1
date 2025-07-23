@@ -13,7 +13,7 @@ namespace NetCoreWebApplication.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string Search)
         {
             ViewBag.DepartmanAdi = "BT";
             ViewBag.KilavuzAdi = "Deneme";

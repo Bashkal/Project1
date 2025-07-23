@@ -16,7 +16,7 @@
 <hr>
 <br>
 <h2>Partial View</h2>
-@Html.Partial("_NewPartialView")
+@*@Html.Partial("_NewPartialView")*@
 <br>
 <partial name="_NewPartialView" />
 <br>
@@ -35,4 +35,10 @@
     @Html.TextBox("Date")
     <br>
     <input id="Submit1" type="submit" value="Gönder" />
+</form>
+<br>
+<form asp-action="Index" method="get">
+    @Html.TextBox("Search")
+    <br>
+    <input id="Submit1" type="submit" value="Ara" />
 </form>
