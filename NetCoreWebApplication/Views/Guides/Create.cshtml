@@ -1,4 +1,4 @@
-﻿@model NetCoreWebApplication.Models.Guide
+﻿@model NetCoreWebApplication.Models.DepGuiController
 
 @{
     ViewData["Title"] = "Yeni Kılavuz Ekle";
@@ -15,28 +15,25 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label">Kılavuz İsmi</label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Guides.Name" class="control-label">Kılavuz İsmi</label>
+                <input asp-for="Guides.Name" class="form-control" />
+                <span asp-validation-for="Guides.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DepartmentId" class="control-label">Departman</label>
-               @Html.DropDownListFor(model => model.DepartmentId,
-                new SelectList(moed, "Id", "Name"),
-                                "Select Department",
-                                new { @class = "form-control" })
-                @*<input asp-for="DepartmentId" class="form-control" />*@
-                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                <label asp-for="Guides.DepartmentId" class="control-label">Departman</label>
+                @*<input asp-for="Guides.DepartmentId" class="form-control" />*@
+               
+                <span asp-validation-for="Guides.DepartmentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label">Açıklama</label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+                <label asp-for="Guides.Description" class="control-label">Açıklama</label>
+                <input asp-for="Guides.Description" class="form-control" />
+                <span asp-validation-for="Guides.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Path" class="control-label">Dosya Yükle</label>
-                <input asp-for="Path" type="file" class="form-control" />
-                <span asp-validation-for="Path" class="text-danger"></span>
+                <label asp-for="Guides.Path" class="control-label">Dosya Yükle</label>
+                <input asp-for="Guides.Path" class="form-control" />
+                <span asp-validation-for="Guides.Path" class="text-danger"></span>
             </div>
             @*<div class="form-group">
                 <label asp-for="CreatedDate" class="control-label"></label>

@@ -13,23 +13,33 @@ namespace NetCoreWebApplication.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index(string Search)
+        public IActionResult Privacy(string Search)
         {
             ViewBag.DepartmanAdi = "BT";
             ViewBag.KilavuzAdi = "Deneme";
             ViewBag.Tarih = DateTime.Now.ToString();
+            //cookie öreði
+            ViewBag.CookieDepartman = Request.Cookies["Departman"];
+            //Session
+            ViewBag.Session=HttpContext.Session.GetString("Date");
             return View();
         }
         [HttpPost]
-        public IActionResult Index(string Dep, string Gui, string Date)
+        public IActionResult Privacy(string Dep, string Gui, string Date)
         {
             ViewBag.DepartmanAdi = Dep;
             ViewBag.KilavuzAdi = Gui;
             ViewBag.Tarih = Date;
-            return View();
+            //cookie örnek
+            Response.Cookies.Append("Departman", Dep);
+
+            //Session Usage
+            HttpContext.Session.SetString("Date", Date);
+
+            return RedirectToAction("Privacy");
         }
 
-        public IActionResult Privacy()
+        public IActionResult Index()
         {
             return View();
         }

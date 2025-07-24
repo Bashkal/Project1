@@ -7,38 +7,3 @@
     <h1>@systemName</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
-@section Scripts {
-    <script>
-
-    </script>
-}
-@Html.CheckBox("Onayliyorum", false)Onaylıyorum
-<hr>
-<br>
-<h2>Partial View</h2>
-@*@Html.Partial("_NewPartialView")*@
-<br>
-<partial name="_NewPartialView" />
-<br>
-@await Html.PartialAsync("_NewPartialView")
-@ViewBag.DepartmanAdi
-<br>
-@ViewBag.KilavuzAdi
-<br>
-@ViewBag.Tarih
-
-<form asp-action="Index">
-    @Html.TextBox("Dep")
-    <br>
-    @Html.TextBox("Gui")
-    <br>
-    @Html.TextBox("Date")
-    <br>
-    <input id="Submit1" type="submit" value="Gönder" />
-</form>
-<br>
-<form asp-action="Index" method="get">
-    @Html.TextBox("Search")
-    <br>
-    <input id="Submit1" type="submit" value="Ara" />
-</form>
