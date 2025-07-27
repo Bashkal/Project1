@@ -6,7 +6,7 @@
         private string? size;
         private string? upload_date;
         private string? path;
-        public void addGuide(string? title, string? size, string? path)
+        public void AddGuide(string? title, string? size, string? path)
         {
             this.title = title + Convert.ToString(DateTime.Today);
             this.size = size;
@@ -17,7 +17,7 @@
         {
             return title + " " + size + " " + path + " " + upload_date;
         }
-        public void editGuide()
+        public void EditGuide()
         {
             ToString();
             Console.WriteLine("Title:");

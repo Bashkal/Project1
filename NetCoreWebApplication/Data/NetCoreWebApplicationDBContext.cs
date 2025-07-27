@@ -12,6 +12,6 @@ using NetCoreWebApplication.Models;
         {
         }
 
-        public DbSet<NetCoreWebApplication.Models.Guide> Guide { get; set; } = default!;
-        public DbSet<NetCoreWebApplication.Models.Department> Department { get; set; } = default!;
+        public DbSet<Guide> Guides { get; set; }
+        public DbSet<Department> Departments { get; set; }
 }

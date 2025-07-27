@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace NetCoreWebApplication.Models
 {
@@ -11,16 +12,18 @@ namespace NetCoreWebApplication.Models
         }
 
         // [JsonProperty("name")] if database has different named column we can use this attribute to map it
-        public required string Name
+        public  string Name
         {
             get;
             set;
         }
-        public  required string DepartmentId
+        [Required(ErrorMessage = "Departman seçimi zorunludur")]
+        public   Guid DepartmentId
         {
             get;
             set;
         }
+        public Department Department { get; set; }
         public string? Description
         {
             get;
@@ -41,7 +44,7 @@ namespace NetCoreWebApplication.Models
             get;
             set;
         }
-        public required string  Path
+        public  string  Path
         {
             get;
             set;

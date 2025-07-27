@@ -6,26 +6,26 @@
         private string dep_authorization;
         private List<User> userlist = new List<User>();
         private List<Guide> guidelist = new List<Guide>();
-        public void addDepartment_info(string name)
+        public void AddDepartment_info(string name)
         {
             this.name = name.ToUpper();
             dep_authorization = name.ToUpper();
         }
-        public void addNewUser()
+        public void AddNewUser()
         {
-            User tempuser = new User();
+            var tempuser = new User();
             Console.WriteLine("Please Enter User Name");
-            string? name = Console.ReadLine();
+            var name = Console.ReadLine();
             Console.WriteLine("Please Enter User Surname");
-            string? lname = Console.ReadLine();
+            var lname = Console.ReadLine();
             Console.WriteLine("Please Enter User Id");
-            long user_id = Convert.ToInt64(Console.ReadLine());
+            var user_id = Convert.ToInt64(Console.ReadLine());
             Console.WriteLine("Please Enter User Password");
-            string? password = Console.ReadLine();
+            var password = Console.ReadLine();
             tempuser.addUserinfo(name, lname, user_id, password);
             userlist.Add(tempuser);
         }
-        public void addUser(User adduserdirect)
+        public void AddUser(User adduserdirect)
         {
             userlist.Add(adduserdirect);
         }
@@ -33,22 +33,22 @@
         {
             Guide tempguide = new Guide();
             Console.WriteLine("Please Enter Guide Title");
-            string? title = Console.ReadLine();
+            var title = Console.ReadLine();
             Console.WriteLine("Please Enter Guide size");
-            string? size = Console.ReadLine();
+            var size = Console.ReadLine();
             Console.WriteLine("Please Enter Guide path");
-            string? path = Console.ReadLine();
-            tempguide.addGuide(title, size, path);
+            var path = Console.ReadLine();
+            tempguide.AddGuide(title, size, path);
             guidelist.Add(tempguide);
         }
-        public void listUsers()
+        public void ListUsers()
         {
             foreach (User user in userlist)
             {
                 Console.WriteLine(user.ToString());
             }
         }
-        public void listGuides()
+        public void ListGuides()
         {
             int i = 0;
             foreach (Guide guide in guidelist)
@@ -60,19 +60,19 @@
         {
             return name;
         }
-        public string getAuth()
+        public string GetAuth()
         {
             return dep_authorization;
         }
-        public List<User> getUserlist()
+        public List<User> GetUserlist()
         {
             return userlist;
         }
-        public List<Guide> getGuideList()
+        public List<Guide> GetGuideList()
         {
             return guidelist;
         }
-        public string getName()
+        public string GetName()
         {
             return name;
         }

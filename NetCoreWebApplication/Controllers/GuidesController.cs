@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+
+using NetCoreWebApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using NetCoreWebApplication.Models;
 
 namespace NetCoreWebApplication.Controllers
 {
@@ -21,7 +22,7 @@ namespace NetCoreWebApplication.Controllers
         // GET: Guides
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Guide.ToListAsync());
+            return View(await _context.Guides.ToListAsync());
         }
 
         // GET: Guides/Details/5
@@ -32,7 +33,7 @@ namespace NetCoreWebApplication.Controllers
                 return NotFound();
             }
 
-            var guide = await _context.Guide.FirstOrDefaultAsync(m => m.Id == id);
+            var guide = await _context.Guides.FirstOrDefaultAsync(m => m.Id == id);
             if (guide == null)
             {
                 return NotFound();
@@ -43,10 +44,16 @@ namespace NetCoreWebApplication.Controllers
 
         // GET: Guides/Create
         public IActionResult Create()
-        {   
-            List<Department> departments = _context.Department.ToList();
-            ViewBag.Department = departments;
-            return View();
+        {
+            var model = new DepGuiModelView()
+            {
+                Departments=_context.Departments.ToList(),
+                Guides = new Guide()
+            };
+
+
+
+            return View(model);
         }
 
         // POST: Guides/Create
@@ -54,17 +61,21 @@ namespace NetCoreWebApplication.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,DepartmentId,Description,CreatedDate,UpdatedDate,CreatedBy,Path")] Guide guide)
+        public IActionResult Create(DepGuiModelView model)
         {
             if (ModelState.IsValid)
             {
-                guide.Id = Guid.NewGuid();
-                _context.Add(guide);
-                await _context.SaveChangesAsync();
+                _context.Guides.Add(model.Guides);
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
-            return View(guide);
+
+            // Re-load Departments if validation fails
+            model.Departments = _context.Departments.ToList();
+            return View(model);
         }
+
+
 
         // GET: Guides/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
@@ -74,7 +85,7 @@ namespace NetCoreWebApplication.Controllers
                 return NotFound();
             }
 
-            var guide = await _context.Guide.FindAsync(id);
+            var guide = await _context.Guides.FindAsync(id);
             if (guide == null)
             {
                 return NotFound();
@@ -125,8 +136,7 @@ namespace NetCoreWebApplication.Controllers
                 return NotFound();
             }
 
-            var guide = await _context.Guide
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var guide = await _context.Guides.FirstOrDefaultAsync(m => m.Id == id);
             if (guide == null)
             {
                 return NotFound();
@@ -140,10 +150,10 @@ namespace NetCoreWebApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var guide = await _context.Guide.FindAsync(id);
+            var guide = await _context.Guides.FindAsync(id);
             if (guide != null)
             {
-                _context.Guide.Remove(guide);
+                _context.Guides.Remove(guide);
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -151,7 +161,7 @@ namespace NetCoreWebApplication.Controllers
 
         private bool GuideExists(Guid id)
         {
-            return _context.Guide.Any(e => e.Id == id);
+            return _context.Guides.Any(e => e.Id == id);
         }
     }
 }

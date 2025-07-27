@@ -28,7 +28,7 @@
 
                 foreach (Department depchoose in departmentList)
                 {
-                    usercheck = depchoose.getUserlist().FirstOrDefault(u => u.getID() == id_check && u.getPassword() == password_check);
+                    usercheck = depchoose.GetUserlist().FirstOrDefault(u => u.getID() == id_check && u.getPassword() == password_check);
                 }
                 //if user exist
                 if (usercheck != null)
@@ -59,11 +59,11 @@
             List<Department> departmentList = new List<Department>();
             //first admin department to save first user
             Department admindep = new Department();
-            admindep.addDepartment_info("admin");
+            admindep.AddDepartment_info("admin");
             //first user to gain access
             User admin = new User();
             admin.addUserinfo("admin", "admin", "max", 1234, "1234");
-            admindep.addUser(admin);
+            admindep.AddUser(admin);
             departmentList.Add(admindep);
             bool exit = false;
             //temporary user to save current user properties
@@ -92,21 +92,21 @@
                         case "0":
                             Department tempdep = new Department();
                             Console.WriteLine("Enter Department Name");
-                            string? depname = Console.ReadLine();
-                            tempdep.addDepartment_info(depname.ToUpper());
+                            var depname = Console.ReadLine();
+                            tempdep.AddDepartment_info(depname.ToUpper());
                             departmentList.Add(tempdep);
                             Console.WriteLine();
                             break;
                         case "1":
-                            departmentList[0].addNewUser();
+                            departmentList[0].AddNewUser();
                             Console.WriteLine();
                             break;
                         case "2":
                             FileName.departmantlisting(departmentList);
                             Console.WriteLine("Which Department");
-                            int addguide = Convert.ToInt32(Console.ReadLine());
+                            var addguide = Convert.ToInt32(Console.ReadLine());
 
-                            if (departmentList[addguide].getAuth().Equals(current_user.getAuth()) || current_user.getAuth().Equals("MAX"))
+                            if (departmentList[addguide].GetAuth().Equals(current_user.getAuth()) || current_user.getAuth().Equals("MAX"))
                             {
                                 departmentList[addguide].addguide();
                             }
@@ -119,24 +119,24 @@
                         case "3":
                             FileName.departmantlisting(departmentList);
                             Console.WriteLine("Which Department");
-                            int listguide = Convert.ToInt32(Console.ReadLine());
-                            departmentList[listguide].listGuides();
+                            var listguide = Convert.ToInt32(Console.ReadLine());
+                            departmentList[listguide].ListGuides();
                             Console.WriteLine();
                             break;
                         case "4":
                             FileName.departmantlisting(departmentList);
                             Console.WriteLine("Which Department");
-                            int userlist = Convert.ToInt32(Console.ReadLine());
-                            departmentList[userlist].listUsers();
+                            var userlist = Convert.ToInt32(Console.ReadLine());
+                            departmentList[userlist].ListUsers();
                             Console.WriteLine();
                             break;
                         case "5":
                             FileName.departmantlisting(departmentList);
                             Console.WriteLine("Which Department");
-                            int editguide = Convert.ToInt32(Console.ReadLine());
-                            departmentList[editguide].listGuides();
-                            int editguide2 = Convert.ToInt32(Console.ReadLine());
-                            departmentList[editguide].getGuideList()[editguide2].editGuide();
+                            var editguide = Convert.ToInt32(Console.ReadLine());
+                            departmentList[editguide].ListGuides();
+                            var editguide2 = Convert.ToInt32(Console.ReadLine());
+                            departmentList[editguide].GetGuideList()[editguide2].EditGuide();
                             Console.WriteLine();
                             break;
                         case "6":

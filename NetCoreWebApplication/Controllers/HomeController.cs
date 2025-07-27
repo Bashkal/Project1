@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using NetCoreWebApplication.Filters;
 using NetCoreWebApplication.Models;
 using System.Diagnostics;
-
 namespace NetCoreWebApplication.Controllers
 {
     public class HomeController : Controller
@@ -38,7 +38,7 @@ namespace NetCoreWebApplication.Controllers
 
             return RedirectToAction("Privacy");
         }
-
+        [UserControl]
         public IActionResult Index()
         {
             return View();

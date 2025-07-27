@@ -6,7 +6,7 @@
         private string lname;
         private string department;
         private long user_id;
-        private string password;
+        private  string password;
         private string authorization;
         private bool login_status = false;
         public void addUserinfo(string name, string lname, string department, long user_id, string password)
@@ -47,8 +47,8 @@
         }
         public void setdepartment(User user, Department dep)
         {
-            user.department = dep.getName().ToUpper();
-            user.authorization = dep.getName().ToUpper();
+            user.department = dep.GetName().ToUpper();
+            user.authorization = dep.GetName().ToUpper();
         }
         public string getAuth()
         {

@@ -3,8 +3,8 @@
 }
 
 <h1>FileUpload</h1>
-<form action="FileUpload" enctype="multipart/form-data">
+<form asp-action="FileUpload" enctype="multipart/form-data">
     <input type="file" name="Image" />
     <input name="Submit" type="submit" value="Gönder" />
 </form>
-<img src="/Document/@TempData["path"]" alt="" height="150">
+<img src="/Img/@TempData["path"]" alt="" height="150">

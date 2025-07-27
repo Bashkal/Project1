@@ -1,9 +1,9 @@
-﻿@model NetCoreWebApplication.Models.DepGuiController
+﻿@model NetCoreWebApplication.Models.DepGuiModelView
 
 @{
     ViewData["Title"] = "Yeni Kılavuz Ekle";
 }
-}
+
     
 
 <h1>Create</h1>
@@ -12,7 +12,9 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Guides.Name" class="control-label">Kılavuz İsmi</label>
@@ -22,7 +24,13 @@
             <div class="form-group">
                 <label asp-for="Guides.DepartmentId" class="control-label">Departman</label>
                 @*<input asp-for="Guides.DepartmentId" class="form-control" />*@
-               
+                @Html.DropDownListFor(model => model.Guides.DepartmentId,
+                new SelectList(Model.Departments, "Id", "Name"),
+                                "Departman Seçiniz",
+                                new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.Guides.DepartmentId, "", new { @class = "text-danger" })
+
                 <span asp-validation-for="Guides.DepartmentId" class="text-danger"></span>
             </div>
             <div class="form-group">

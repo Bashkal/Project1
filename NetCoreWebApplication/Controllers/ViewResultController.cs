@@ -18,7 +18,7 @@ namespace NetCoreWebApplication.Controllers
         {
             if (Image is not null)
             {
-                string path =Directory.GetCurrentDirectory()+ "/wwwroot/Document/"+ Image.FileName;
+                string path =Directory.GetCurrentDirectory()+ "/wwwroot/Img/"+ Image.FileName;
                 using var stream = new FileStream(path, FileMode.Create);
                 Image.CopyTo(stream);
                 TempData["path"]= Image.FileName;
