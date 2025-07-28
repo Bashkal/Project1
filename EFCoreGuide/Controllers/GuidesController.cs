@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EFCoreGuide.Models;
 
-namespace EFCoreGuide.Areas.Admin.Controllers
+namespace EFCoreGuide.Controllers
 {
-    [Area("Admin")]
     public class GuidesController : Controller
     {
         private readonly EFCoreDbContext _context;
@@ -19,14 +18,14 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Guides
+        // GET: Guides
         public async Task<IActionResult> Index()
         {
-            var eFCoreDbContext = _context.Guides.Include(g => g.Department).Include(a=>a.Brand);
+            var eFCoreDbContext = _context.Guides.Include(g => g.Brand).Include(g => g.Department);
             return View(await eFCoreDbContext.ToListAsync());
         }
 
-        // GET: Admin/Guides/Details/5
+        // GET: Guides/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -35,6 +34,7 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             }
 
             var guide = await _context.Guides
+                .Include(g => g.Brand)
                 .Include(g => g.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (guide == null)
@@ -45,16 +45,15 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             return View(guide);
         }
 
-        // GET: Admin/Guides/Create
+        // GET: Guides/Create
         public IActionResult Create()
         {
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name");
-
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return View();
         }
 
-        // POST: Admin/Guides/Create
+        // POST: Guides/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -67,12 +66,12 @@ namespace EFCoreGuide.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", guide.DepartmentId);
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", guide.BrandId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", guide.DepartmentId);
             return View(guide);
         }
 
-        // GET: Admin/Guides/Edit/5
+        // GET: Guides/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -85,16 +84,17 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", guide.BrandId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", guide.DepartmentId);
             return View(guide);
         }
 
-        // POST: Admin/Guides/Edit/5
+        // POST: Guides/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Path,DepartmentId")] Guide guide)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Description,Path,DepartmentId,BrandId")] Guide guide)
         {
             if (id != guide.Id)
             {
@@ -121,11 +121,12 @@ namespace EFCoreGuide.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", guide.BrandId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", guide.DepartmentId);
             return View(guide);
         }
 
-        // GET: Admin/Guides/Delete/5
+        // GET: Guides/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,6 +135,7 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             }
 
             var guide = await _context.Guides
+                .Include(g => g.Brand)
                 .Include(g => g.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (guide == null)
@@ -144,7 +146,7 @@ namespace EFCoreGuide.Areas.Admin.Controllers
             return View(guide);
         }
 
-        // POST: Admin/Guides/Delete/5
+        // POST: Guides/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -53,17 +53,23 @@ namespace EFCoreGuide.Areas.Admin.Controllers
 
         // GET: BrandController/Edit/5
         public ActionResult Edit(int id)
-        {
-            return View();
+        {   //var model=_context.Brands.Where(b=>b.Id==id).FirstOrDefault();
+             //var model=_context.Brands.Where(b => b.Id == id).SingleOrDefault();
+             var model= _context.Brands.FirstOrDefault(b => b.Id == id);
+            return View(model);
         }
 
         // POST: BrandController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Brand brand)
         {
             try
-            {
+            { //_context.Attach<Brand>(brand).State = EntityState.Modified;
+                //_context.Brands.Update(brand); // bu da olur
+                // _context.Entry<Brand>(brand).State = EntityState.Modified; // bu da olur
+                _context.Update(brand); // bu da olur
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -73,18 +79,22 @@ namespace EFCoreGuide.Areas.Admin.Controllers
         }
 
         // GET: BrandController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
+        public async Task<IActionResult> Delete(int id)
+        {   var model =await _context.Brands.FindAsync(id);
+            return View(model);
         }
 
         // POST: BrandController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Brand brand)
         {
             try
-            {
+            {   //_context.Attach<Brand>(brand).State = EntityState.Deleted;
+                //_context.Brands.Remove(brand); // bu da olur
+                //_context.Entry<Brand>(brand).State = EntityState.Deleted; // bu da olur
+                _context.Remove(brand); // bu da olur
+                _context.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

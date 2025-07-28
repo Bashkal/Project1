@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreWebApplication", "Ne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreGuide", "EFCoreGuide\EFCoreGuide.csproj", "{346702C3-707D-41F3-AEF0-4AC202FF5223}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DenerMakine", "DenerMakine\DenerMakine.csproj", "{BC0B5295-26F7-4CCE-8247-0559065A1EF8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{346702C3-707D-41F3-AEF0-4AC202FF5223}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{346702C3-707D-41F3-AEF0-4AC202FF5223}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{346702C3-707D-41F3-AEF0-4AC202FF5223}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC0B5295-26F7-4CCE-8247-0559065A1EF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0B5295-26F7-4CCE-8247-0559065A1EF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0B5295-26F7-4CCE-8247-0559065A1EF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0B5295-26F7-4CCE-8247-0559065A1EF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
