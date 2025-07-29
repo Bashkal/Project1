@@ -21,39 +21,43 @@
             <th>
                 @Html.DisplayNameFor(model => model.Image)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsActive)
-            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedDate)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedDate)
-            </td>
-            <td>
-                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> 
-                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detaylar</a> 
-                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.Image)" style="max-height:50px" alt="">
+                    
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Düzenle</a>
+                    <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.Id">Detaylar</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

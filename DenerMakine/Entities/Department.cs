@@ -24,12 +24,11 @@ namespace DenerMakine.Entities
         public string? Image{get;set;}
 
 
-        [Display(Name = "Durum")]
-        public bool IsActive{get;set;}
-
-
         [Display(Name = "Oluşturulma Tarihi")]
-        public DateTime? CreatedDate{get;set;} = DateTime.Now;
+        public DateTime? CreatedDate{get;set;}
+
+        [Display(Name = "Güncellenme Tarihi")]
+        public DateTime? UpdatedDate{get;set;}
         public List<Guide>? Guides{get;set;}
     }
 }

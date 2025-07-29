@@ -27,9 +27,6 @@ namespace DenerMakine.Entities
         public string? File{get;set;}
 
 
-        [Display(Name = "Durum")]     
-        public bool IsActive{get;set;}
-
 
         [Display(Name = "Oluşturulma Tarihi")]
         public DateTime? CreatedDate{get;set;}

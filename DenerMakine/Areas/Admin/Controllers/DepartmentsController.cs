@@ -55,10 +55,25 @@ namespace DenerMakine.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,IsActive,CreatedDate")] Department department)
-        {       department.CreatedDate = DateTime.UtcNow;
+        public async Task<IActionResult> Create(Department department,IFormFile? Image)
+        {       
             if (ModelState.IsValid)
             {
+                if (Image is not null)
+                {string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "departments");
+                    if (!Directory.Exists(directory))
+                    {
+                        Directory.CreateDirectory(directory);
+                    }
+                    string fileName = $"{Guid.NewGuid()}_{Image.FileName}";
+                    string filePath = Path.Combine(directory, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                    }
+                    department.Image = $"/images/departments/{fileName}";
+                }
+                department.CreatedDate = DateTime.Now;
                 _context.Add(department);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,7 +102,7 @@ namespace DenerMakine.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image,IsActive,CreatedDate")] Department department)
+        public async Task<IActionResult> Edit(int id,Department department,IFormFile Image)
         {
             if (id != department.Id)
             {
@@ -98,6 +113,24 @@ namespace DenerMakine.Areas.Admin.Controllers
             {
                 try
                 {
+                    if (Image is not null)
+                    {
+                        string directory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "departments");
+                        if (!Directory.Exists(directory))
+                        {
+                            Directory.CreateDirectory(directory);
+                        }
+                        string fileName = $"{Guid.NewGuid()}_{Image.FileName}";
+                        string filePath = Path.Combine(directory, fileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await Image.CopyToAsync(stream);
+                        }
+                        department.Image = $"/images/departments/{fileName}";
+                    }
+
+                    department.UpdatedDate = DateTime.Now;
+                    department.CreatedDate = _context.Departments.AsNoTracking().FirstOrDefault(d => d.Id == id)?.CreatedDate ?? DateTime.Now;
                     _context.Update(department);
                     await _context.SaveChangesAsync();
                 }
