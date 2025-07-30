@@ -25,7 +25,8 @@ namespace DenerMakine.Entities
 
         [Display(Name = "Kılavuz Dosyası")]
         public string? File{get;set;}
-
+        public string? FileType{get;set;
+        }
 
 
         [Display(Name = "Oluşturulma Tarihi")]

@@ -1,16 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DenerMakine.Data;
+using DenerMakine.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DenerMakine.Data;
-using DenerMakine.Entities;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class GuidesController : Controller
     {
         private readonly DataBaseContext _context;
@@ -58,12 +61,46 @@ namespace DenerMakine.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Image,File,IsActive,DepartmentId")] Guide guide)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,IsActive,DepartmentId")] Guide guide, IFormFile? Image, IFormFile? File)
         {
             guide.CreatedDate = DateTime.Now;
             guide.UpdatedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
+                if (Image is not null)
+                {
+                    string ImageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "guides");
+                    if (!Directory.Exists(ImageDirectory))
+                    {
+                        Directory.CreateDirectory(ImageDirectory);
+                    }
+                    string imageName = $"{Guid.NewGuid()}_{Image.FileName}";
+                    string imagePath = Path.Combine(ImageDirectory, imageName);
+                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        await Image.CopyToAsync(stream);
+                    }
+                    guide.Image = $"/images/guides/{imageName}";
+                }
+                if (File is not null)
+                {
+                    string fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", "guides");
+                    if (!Directory.Exists(fileDirectory))
+                    {
+                        Directory.CreateDirectory(fileDirectory);
+                    }
+                    var extension = Path.GetExtension(File.FileName);
+                    string fileName = $"{Guid.NewGuid()}_{File.FileName}";
+                    string filePath = Path.Combine(fileDirectory, fileName);
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await File.CopyToAsync(stream);
+                    }
+                    guide.File = $"/files/guides/{fileName}";
+                    guide.FileType = extension;
+                }
+
+
                 _context.Add(guide);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -94,18 +131,49 @@ namespace DenerMakine.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Image,File,IsActive,DepartmentId")] Guide guide)
+        public async Task<IActionResult> Edit(int id, Guide guide, IFormFile? Image, IFormFile? File)
         {
             if (id != guide.Id)
             {
                 return NotFound();
             }
-            guide.CreatedDate = _context.Guides.AsNoTracking().FirstOrDefault(g => g.Id == id)?.CreatedDate ?? DateTime.Now;
             guide.UpdatedDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 try
                 {
+                    if (Image is not null)
+                    {
+                        string ImageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "guides");
+                        if (!Directory.Exists(ImageDirectory))
+                        {
+                            Directory.CreateDirectory(ImageDirectory);
+                        }
+                        string imageName = $"{Guid.NewGuid()}_{Image.FileName}";
+                        string imagePath = Path.Combine(ImageDirectory, imageName);
+                        using (var stream = new FileStream(imagePath, FileMode.Create))
+                        {
+                            await Image.CopyToAsync(stream);
+                        }
+                        guide.Image = $"/images/guides/{imageName}";
+                    }
+                    if (File is not null)
+                    {
+                        string fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "files", "guides");
+                        if (!Directory.Exists(fileDirectory))
+                        {
+                            Directory.CreateDirectory(fileDirectory);
+                        }
+                        var extension = Path.GetExtension(File.FileName);
+                        string fileName = $"{Guid.NewGuid()}_{File.FileName}";
+                        string filePath = Path.Combine(fileDirectory, fileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await File.CopyToAsync(stream);
+                        }
+                        guide.File = $"/files/guides/{fileName}";
+                        guide.FileType = extension;
+                    }
                     _context.Update(guide);
                     await _context.SaveChangesAsync();
                 }
@@ -163,6 +231,23 @@ namespace DenerMakine.Areas.Admin.Controllers
         private bool GuideExists(int id)
         {
             return _context.Guides.Any(e => e.Id == id);
+        }
+       
+        public FileStreamResult FileDown(int id)
+        {
+            var guide =_context.Guides.Find(id);
+            if (guide == null|| string.IsNullOrEmpty(guide.File))
+            {
+                    throw new FileNotFoundException("Kılavuz dosyası bulunamadı.");
+            }
+            else
+            {   var extension = Path.GetExtension(guide.File);
+                var stream = new FileStream("wwwroot"+guide.File,FileMode.Open);
+                return new FileStreamResult(stream, "application/"+extension) { FileDownloadName=Path.Combine(guide.Name,guide.FileType)};
+            }
+            
+                
+           
         }
     }
 }

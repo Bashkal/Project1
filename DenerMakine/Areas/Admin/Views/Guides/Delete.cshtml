@@ -28,13 +28,16 @@
                 @Html.DisplayNameFor(model => model.Image)
             </dt>
             <dd class="col-sm-5">
-                @Html.DisplayFor(model => model.Image)
+                <img src="@Html.DisplayFor(model => model.Image)" style="max-height:100px" alt="">
+                
             </dd>
             <dt class="col-sm-5">
                 @Html.DisplayNameFor(model => model.File)
             </dt>
             <dd class="col-sm-5">
-                @Html.DisplayFor(model => model.File)
+                <a target="_blank" href="@Html.DisplayFor(model => model.File)"><i class="fas fa-file btn btn-primary"></i></a>
+                <a asp-action="FileDown" asp-route-id="@(Model.Id)"><i class="fas fa-download btn btn-secondary"></i></a>
+
             </dd>
 
             <dt class="col-sm-5">

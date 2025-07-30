@@ -7,10 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DenerMakine.Data;
 using DenerMakine.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class DepartmentsController : Controller
     {
         private readonly DataBaseContext _context;
