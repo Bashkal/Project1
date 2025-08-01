@@ -10,9 +10,8 @@ builder.Services.AddDbContext<DataBaseContext>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
-        options.LoginPath = "/Login";
-        options.Cookie.Name = "LoginCookie";
-        options.AccessDeniedPath = "/Login";
+        options.LoginPath = "/Login/Login";
+        options.Cookie.Name = "AdminLogin";
     });
 var app = builder.Build();
 
@@ -33,8 +32,8 @@ app.UseAuthorization();
 app.MapStaticAssets();
 
 app.MapControllerRoute(
-  name: "areas",
-  pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+  name: "admin",
+  pattern: "{area:exists}/{controller=Main}/{action=Index}/{id?}"
 );
 app.MapControllerRoute(
     name: "default",

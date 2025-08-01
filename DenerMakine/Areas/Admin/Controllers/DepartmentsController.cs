@@ -11,8 +11,8 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
+    [Area("Admin"), Authorize]
+
     public class DepartmentsController : Controller
     {
         private readonly DataBaseContext _context;
@@ -178,6 +178,14 @@ namespace DenerMakine.Areas.Admin.Controllers
             var department = await _context.Departments.FindAsync(id);
             if (department != null)
             {
+                if(department.Image is not null)
+                {
+                    string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"+ department.Image);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
                 _context.Departments.Remove(department);
             }
 

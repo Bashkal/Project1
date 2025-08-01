@@ -4,8 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
+    [Area("Admin"), Authorize]
     public class MainController : Controller
     {
         DataBaseContext _context;
@@ -17,6 +16,16 @@ namespace DenerMakine.Areas.Admin.Controllers
         {
             DataBaseContext context = new DataBaseContext();
             return View(context);
+        }
+        public IActionResult UserInfo()
+        {
+            var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (user == null)
+            {
+                TempData["Error"] = "Kullanıcı bulunamadı.";
+                return RedirectToAction("Index");
+            }
+            return View(user);
         }
         public FileStreamResult FileDown(int id)
         {

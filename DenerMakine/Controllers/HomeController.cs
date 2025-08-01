@@ -1,24 +1,30 @@
+using DenerMakine.Data;
 using DenerMakine.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace DenerMakine.Controllers
 {
     public class HomeController : Controller
+
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly DataBaseContext _context;
+        public HomeController(DataBaseContext context)
         {
-            _logger = logger;
+            _context = context;
         }
-
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var dataBaseContext = _context.Guides.Include(g => g.Department);
+            return View(await dataBaseContext.ToListAsync());
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Contact()
         {
             return View();
         }
@@ -27,6 +33,20 @@ namespace DenerMakine.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        public FileStreamResult FileDown(int id)
+        {
+            var guide = _context.Guides.Find(id);
+            if (guide == null || string.IsNullOrEmpty(guide.File))
+            {
+                throw new FileNotFoundException("Kýlavuz dosyasý bulunamadý.");
+            }
+            else
+            {
+                var extension = Path.GetExtension(guide.File);
+                var stream = new FileStream("wwwroot" + guide.File, FileMode.Open);
+                return new FileStreamResult(stream, "application/" + extension) { FileDownloadName = Path.Combine(guide.Name, guide.FileType) };
+            }
         }
     }
 }

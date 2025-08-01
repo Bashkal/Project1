@@ -11,8 +11,8 @@ using System.Threading.Tasks;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
+    [Area("Admin"), Authorize]
+
     public class UsersController : Controller
     {
         private readonly DataBaseContext _context;

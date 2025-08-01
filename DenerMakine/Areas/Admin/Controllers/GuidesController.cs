@@ -12,8 +12,7 @@ using System.Threading.Tasks;
 
 namespace DenerMakine.Areas.Admin.Controllers
 {
-    [Area("Admin")]
-    [Authorize]
+    [Area("Admin"), Authorize]
     public class GuidesController : Controller
     {
         private readonly DataBaseContext _context;
@@ -41,6 +40,7 @@ namespace DenerMakine.Areas.Admin.Controllers
             var guide = await _context.Guides
                 .Include(g => g.Department)
                 .FirstOrDefaultAsync(m => m.Id == id);
+            
             if (guide == null)
             {
                 return NotFound();
@@ -219,8 +219,28 @@ namespace DenerMakine.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var guide = await _context.Guides.FindAsync(id);
+            
             if (guide != null)
             {
+                if (guide.Image is not null)
+                {
+                    var imagePath = Path.Combine(Directory.GetCurrentDirectory(),"wwwroot"+ guide.Image);
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                    
+                }
+                if (guide.File is not null)
+                {
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot"+ guide.File);
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        System.IO.File.Delete(filePath);
+                    }
+                    
+                }
+                
                 _context.Guides.Remove(guide);
             }
 
