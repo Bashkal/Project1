@@ -1,6 +1,7 @@
 ﻿using DenerMakine.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using DenerMakine.Entities;
 
 namespace DenerMakine.Controllers
 {
@@ -11,19 +12,34 @@ namespace DenerMakine.Controllers
         {
             _context = context;
         }
-        public async Task <IActionResult> IndexAsync()
+
+        public async Task<IActionResult> Index()
         {
-            var model =await _context.Guides.Include(g=>g.Department).ToListAsync();
+            var model = await _context.Guides.Include(g => g.Department).ToListAsync();
             return View(model);
         }
-        public async Task <IActionResult> DetailsAsync(int id)
+
+        public async Task<IActionResult> Details(int id)
         {
-            var model =await _context.Guides.FindAsync(id);
+            var model = await _context.Guides
+                .Include(g => g.Department)
+                .Include(g => g.VideoChapters) // chapter'ları da yükle
+                .FirstOrDefaultAsync(g => g.Id == id);
+
+            if (model == null)
+                return NotFound();
+
             return View(model);
         }
-        public async Task<IActionResult> SearchAsync(string? search)
+
+        public async Task<IActionResult> Search(string? search)
         {
-            var model = await _context.Guides.Include(g => g.Department).Where(p => p.Name.Contains(search)||p.Description.Contains(search)||p.Department.Name.Contains(search)).ToListAsync();
+            var model = await _context.Guides
+                .Include(g => g.Department)
+                .Where(p => p.Name.Contains(search)
+                         || p.Description.Contains(search)
+                         || p.Department.Name.Contains(search))
+                .ToListAsync();
             return View(model);
         }
     }

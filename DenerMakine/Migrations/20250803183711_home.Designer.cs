@@ -4,6 +4,7 @@ using DenerMakine.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DenerMakine.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20250803183711_home")]
+    partial class home
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -144,39 +147,14 @@ namespace DenerMakine.Migrations
                         {
                             Id = 1,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "admin@admin.com",
-                            FirstName = "admin",
+                            Email = "mahmutsamibaskal@gmail.com",
+                            FirstName = "Mahmut Sami",
                             IsActive = true,
                             IsAdmin = true,
-                            LastName = "admin",
-                            Password = "adm1234",
-                            UserName = "adm"
+                            LastName = "Başkal",
+                            Password = "1234",
+                            UserName = "Bashkal"
                         });
-                });
-
-            modelBuilder.Entity("DenerMakine.Entities.VideoChapter", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("GuideId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeSpan>("StartTime")
-                        .HasColumnType("time");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GuideId");
-
-                    b.ToTable("VideoChapters");
                 });
 
             modelBuilder.Entity("DenerMakine.Entities.Guide", b =>
@@ -190,25 +168,9 @@ namespace DenerMakine.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("DenerMakine.Entities.VideoChapter", b =>
-                {
-                    b.HasOne("DenerMakine.Entities.Guide", "Guide")
-                        .WithMany("VideoChapters")
-                        .HasForeignKey("GuideId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Guide");
-                });
-
             modelBuilder.Entity("DenerMakine.Entities.Department", b =>
                 {
                     b.Navigation("Guides");
-                });
-
-            modelBuilder.Entity("DenerMakine.Entities.Guide", b =>
-                {
-                    b.Navigation("VideoChapters");
                 });
 #pragma warning restore 612, 618
         }

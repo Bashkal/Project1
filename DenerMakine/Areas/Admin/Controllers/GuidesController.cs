@@ -38,7 +38,7 @@ namespace DenerMakine.Areas.Admin.Controllers
             }
 
             var guide = await _context.Guides
-                .Include(g => g.Department)
+                .Include(g => g.Department).Include(g => g.VideoChapters.Where(a=>a.GuideId==id))
                 .FirstOrDefaultAsync(m => m.Id == id);
             
             if (guide == null)
@@ -131,7 +131,7 @@ namespace DenerMakine.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Guide guide, IFormFile? Image, IFormFile? File)
+        public async Task<IActionResult> Edit(int id, Guide guide, IFormFile? Image, IFormFile? File,TimeSpan Chapter)
         {
             if (id != guide.Id)
             {
@@ -269,5 +269,31 @@ namespace DenerMakine.Areas.Admin.Controllers
                 
            
         }
+        [HttpPost]
+        public IActionResult AddChapter([FromBody] ChapterDto dto)
+        {
+            if (dto == null || dto.GuideId <= 0)
+                return BadRequest(new { message = "Geçersiz veri." });
+
+            var chapter = new VideoChapter
+            {
+                GuideId = dto.GuideId,
+                StartTime = TimeSpan.FromSeconds(dto.TimeInSeconds),
+                Title = dto.Title ?? $"Chapter - {dto.TimeInSeconds:F0}sn"
+            };
+
+            _context.VideoChapters.Add(chapter);
+            _context.SaveChanges();
+
+            return Json(new { message = "Chapter başarıyla eklendi." });
+        }
+
+        public class ChapterDto
+        {
+            public int GuideId { get; set; }
+            public double TimeInSeconds { get; set; }
+            public string? Title { get; set; }
+        }
+
     }
 }

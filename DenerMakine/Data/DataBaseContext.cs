@@ -9,6 +9,9 @@ namespace DenerMakine.Data
         public DbSet<Guide> Guides { get; set;}
         public DbSet<User>Users { get; set;}
 
+        public DbSet<VideoChapter> VideoChapters { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -17,11 +20,11 @@ namespace DenerMakine.Data
             modelBuilder.Entity<User>().ToTable("Users").HasData(
                 new User { 
                     Id=1,
-                    Email ="mahmutsamibaskal@gmail.com", 
-                    FirstName="Mahmut Sami", 
-                    LastName="Başkal", 
-                    Password="1234", 
-                    UserName="Bashkal",
+                    Email ="admin@admin.com", 
+                    FirstName="admin", 
+                    LastName="admin", 
+                    Password="adm1234", 
+                    UserName="adm",
                     IsAdmin=true,
                     IsActive=true, 
                     CreatedDate=DateTime.MinValue});

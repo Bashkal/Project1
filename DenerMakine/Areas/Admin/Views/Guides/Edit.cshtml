@@ -6,7 +6,6 @@
 
 <h1>Kılavuz Bilgilerini Düzenle</h1>
 
-
 <hr />
 <div class="row">
     <div class="col-md-1"></div>
@@ -19,7 +18,6 @@
             <input type="hidden" asp-for="File" />
             <input type="hidden" asp-for="FileType" />
 
-            
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -41,7 +39,6 @@
                 <span asp-validation-for="File" class="text-danger"></span>
             </div>
 
-
             <div class="form-group">
                 <label asp-for="DepartmentId" class="control-label"></label>
                 <select asp-for="DepartmentId" class="form-select" asp-items="ViewBag.DepartmentId"></select>
@@ -55,7 +52,31 @@
         </form>
     </div>
     <div class="col-md-2"></div>
-    <div class="col-md-4 text-muted"><img src="~/kurumsal-logo.jpg" /></div>
+
+    @if (Model.FileType == ".mp4")
+    {
+        <div class="col-md-6 text-muted">
+            <video id="myVideo" style="width:100%" controls="controls">
+                <source src="@Model.File" type="video/mp4" />
+            </video>
+
+            <div class="form-group mt-3">
+                <input type="text" id="chapterTitle" class="form-control mb-2" placeholder="Chapter başlığı (isteğe bağlı)" />
+                <button type="button" id="addChapterBtn" class="btn btn-success">
+                    Bu Noktadan Chapter Ekle
+                </button>
+            </div>
+
+            <div id="chapterMessage" class="mt-2 text-success" style="display:none;"></div>
+        </div>
+    }
+    else
+    {
+        <div class="col-md-2"></div>
+        <div class="col-md-4 text-muted">
+            <img src="~/kurumsal-logo.jpg" alt="Kurumsal Logo" />
+        </div>
+    }
     <div class="col-md-1"></div>
 </div>
 
@@ -63,4 +84,29 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        document.getElementById("addChapterBtn")?.addEventListener("click", function () {
+            let video = document.getElementById("myVideo");
+            let currentTime = video.currentTime;
+            let title = document.getElementById("chapterTitle").value;
+
+            fetch('@Url.Action("AddChapter", "Guides", new { area = "Admin" })', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    guideId: @Model.Id,
+                    timeInSeconds: currentTime,
+                    title: title
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                let msg = document.getElementById("chapterMessage");
+                msg.textContent = data.message;
+                msg.style.display = "block";
+            })
+            .catch(err => console.error("Hata:", err));
+        });
+    </script>
 }

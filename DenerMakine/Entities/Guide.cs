@@ -40,5 +40,6 @@ namespace DenerMakine.Entities
         [Display(Name = "Departman")]
         public int DepartmentId{get;set;}
         public Department? Department{get;set;}
+        public ICollection<VideoChapter>? VideoChapters { get; set; }
     }
 }
